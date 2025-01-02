@@ -1,12 +1,11 @@
 import { notFound } from 'next/navigation';
 
-import { getAllNews } from '@/lib/news';
+import { getNewsItem } from '@/lib/news';
 import ModalBackdrop from '@/components/modal-backdrop';
 
-export default async function IntecaptedImagePage({ params }) {
-  const { slug: imageSlug } = await params;
-
-  const newsItem = getAllNews().find((it) => it.slug === imageSlug);
+export default async function InterceptedImagePage({ params }) {
+  const { slug } = await params;
+  const newsItem = await getNewsItem(slug);
 
   if (!newsItem) {
     notFound();

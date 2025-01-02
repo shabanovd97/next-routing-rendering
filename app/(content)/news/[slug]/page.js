@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-import { getAllNews } from '@/lib/news';
+import { getNewsItem } from '@/lib/news';
 
 export default async function NewsDetailsPage({ params }) {
   const { slug } = await params;
-  const newsItem = getAllNews().find((it) => it.slug === slug);
+  const newsItem = await getNewsItem(slug);
 
   if (!newsItem) {
     notFound();
